@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [currentPrice, setCurrentPrice] = useState('???');
+
+  useEffect(() => {
+    fetch('/getPrices').then(res => res.json()).then(data => {
+      setCurrentPrice(data.prices);
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +26,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          current prices: {currentPrice}
+        </p>
       </header>
     </div>
   );
