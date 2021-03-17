@@ -1,1 +1,3 @@
-export default function MomentList() {}
+export default function MomentList() {
+  return <div></div>;
+}
