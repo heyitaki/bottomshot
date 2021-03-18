@@ -1,6 +1,6 @@
 import flask
 from flask import jsonify, request
-from server.src.test import get_min_prices
+from server.src.test import get_moment_data
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -13,8 +13,8 @@ def home():
 
 
 @app.route("/getPrices", methods=["GET"])
-def get_prices():
-    return {"prices": get_min_prices()}
+def get_prices(set_id, play_id):
+    return {"prices": get_moment_data(set_id, play_id)}
 
 
 app.run()
