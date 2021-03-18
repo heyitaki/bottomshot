@@ -4,7 +4,10 @@ import requests
 
 
 def get_moment_data(url):
+    print("url", url)
     set_id, play_id = topshot_url_to_ids(url)
+    print("set_id", set_id, len(set_id))
+    print("play_id", play_id, len(play_id))
     payload = construct_payload(set_id, play_id)
     headers = {"content-type": "application/json"}
     r = requests.post(
@@ -12,16 +15,19 @@ def get_moment_data(url):
         json=payload,
         headers=headers,
     )
-    topshot_data = r.json()["data"]["getUserMomentListings"]["data"]
-    pprint(topshot_data)
+    res = r.json()
+    print("res", res)
+    topshot_data = res["data"]["getUserMomentListings"]["data"]
+    print("topshot_data", topshot_data)
     min_price_moment = topshot_data["momentListings"][0]
     moment_data = {
-        "circulation_count": topshot_data["circulationCount"],
-        "min_price": topshot_data["priceRange"]["min"],
-        "min_price_serial_number": min_price_moment["moment"]["flowSerialNumber"],
-        "player_name": topshot_data["play"]["stats"]["playerName"],
-        "set_name": topshot_data["set"]["flowName"],
-        "set_series_number": topshot_data["set"]["flowSeriesNumber"],
+        "circulationCount": topshot_data["circulationCount"],
+        "minPrice": topshot_data["priceRange"]["min"],
+        "minPriceSerialNumber": min_price_moment["moment"]["flowSerialNumber"],
+        "playerName": topshot_data["play"]["stats"]["playerName"],
+        "setName": topshot_data["set"]["flowName"],
+        "setSeriesNumber": topshot_data["set"]["flowSeriesNumber"],
+        "topshotId": min_price_moment["moment"]["id"],
         "url": url,
     }
     return moment_data

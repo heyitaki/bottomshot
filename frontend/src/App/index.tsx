@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import AddMomentBar from "../components/AddMomentBar";
-import MomentList from "../components/MomentList";
-import "./index.css";
 import 'antd/dist/antd.css';
-
+import React, { useState } from 'react';
+import AddMomentBar from '../components/AddMomentBar';
+import MomentList from '../components/MomentList';
+import { getMomentData } from '../routes/moment';
+import './index.css';
 
 export interface CardInfo {
   key: number;
@@ -16,21 +16,19 @@ export interface CardInfo {
 function App() {
   const [cardsData, setCardsData] = useState<CardInfo[]>([]);
 
-  function addCardToTable(url: string) {
-    // this is where we will query our backend server to get the actual data for the passed in url.
-    const data: CardInfo = {
+  async function addCardToTable(url: string) {
+    const data = await getMomentData(url);
+    const info: CardInfo = {
       key: 0,
-      cardName: 'Tim Duncan (#1/150)',
-      setName: 'Seeing Stars',
-      lowestPrice: 8000,
-      diffNextLowest: 100,
+      cardName: data.playerName,
+      setName: data.setName,
+      lowestPrice: data.minPrice,
+      diffNextLowest: 10,
     };
-    setCardsData(cardsData => [...cardsData, data]);
+    setCardsData((cardsData) => [...cardsData, info]);
   }
 
-  function removeCardFromTable() {
-
-  }
+  function removeCardFromTable() {}
 
   return (
     <div className="page-wrapper">
