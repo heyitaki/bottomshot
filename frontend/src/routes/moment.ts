@@ -1,4 +1,6 @@
-export const getMomentData = (url: string): Promise<IMoment> => {
+import { Moment } from '../models/Moment';
+
+export const getMomentData = (url: string): Promise<MomentData> => {
   return fetch('http://localhost:5000/getPrices', {
     method: 'POST',
     body: JSON.stringify(url),
@@ -11,7 +13,17 @@ export const getMomentData = (url: string): Promise<IMoment> => {
   });
 };
 
-export interface IMoment {
+export const transformMomentDataToMoment = (data: MomentData): Moment => {
+  return {
+    key: data.topshotId,
+    cardName: data.playerName,
+    setName: data.setName,
+    lowestPrice: data.minPrice,
+    diffNextLowest: 10,
+  };
+};
+
+export interface MomentData {
   circulationCount: number;
   minPrice: number;
   minPriceSerialNumber: number;
