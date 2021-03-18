@@ -1,15 +1,14 @@
-import React from 'react';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-
-import { CardInfo } from '../../App';
+import React from 'react';
+import { Moment } from '../../models/Moment';
 
 type MomentListProps = {
-  cardsData: CardInfo[],
-  removeCard: Function
-}
+  moments: Moment[];
+  removeMoment: Function;
+};
 
-const columns: ColumnsType<CardInfo> = [
+const columns: ColumnsType<Moment> = [
   {
     key: 'cardName',
     title: 'Card Name',
@@ -29,15 +28,9 @@ const columns: ColumnsType<CardInfo> = [
     key: 'diffNextLowest',
     title: 'Difference between next lowest price',
     dataIndex: 'diffNextLowest',
-  }
+  },
 ];
 
-export default function MomentList({cardsData, removeCard}: MomentListProps) {
-  return (
-    <Table<CardInfo>
-      pagination={false}
-      columns={columns}
-      dataSource={cardsData}
-    />
-  );
+export default function MomentList({ moments, removeMoment }: MomentListProps) {
+  return <Table<Moment> pagination={false} columns={columns} dataSource={moments} />;
 }

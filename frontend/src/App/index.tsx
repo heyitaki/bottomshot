@@ -7,19 +7,19 @@ import { getMomentData, transformMomentDataToMoment } from '../routes/moment';
 import './index.css';
 
 function App() {
-  const [cardsData, setCardsData] = useState<Moment[]>([]);
+  const [moments, setMoments] = useState<Moment[]>([]);
 
-  async function addCardToTable(url: string) {
-    const data = transformMomentDataToMoment(await getMomentData(url));
-    setCardsData((cardsData) => [...cardsData, data]);
+  async function addMomentToTable(url: string) {
+    const newMoment = transformMomentDataToMoment(await getMomentData(url));
+    setMoments((moments) => [...moments, newMoment]);
   }
 
   function removeCardFromTable() {}
 
   return (
     <div className="page-wrapper">
-      <AddMomentBar addCard={addCardToTable} />
-      <MomentList cardsData={cardsData} removeCard={removeCardFromTable} />
+      <AddMomentBar addMoment={addMomentToTable} />
+      <MomentList moments={moments} removeMoment={removeCardFromTable} />
     </div>
   );
 }

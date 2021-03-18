@@ -3,17 +3,17 @@ import 'antd/dist/antd.css';
 import React from 'react';
 
 type AddMomentBarProps = {
-  addCard: Function;
+  addMoment: Function;
 };
 
-export default function AddMomentBar({ addCard }: AddMomentBarProps) {
+export default function AddMomentBar({ addMoment }: AddMomentBarProps) {
   return (
     <React.Fragment>
       <div>Placeholder for where you will pass in the URL of your card</div>
       <Button
         type="primary"
         onClick={() =>
-          addCard(
+          addMoment(
             'https://www.nbatopshot.com/listings/p2p/122b048d-585e-4c63-8275-c23949576fd6+ec2200a8-c6a9-4d67-9c26-987c558dc50e',
           )
         }
