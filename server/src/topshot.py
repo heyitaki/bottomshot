@@ -1,9 +1,10 @@
-import pprint
+from pprint import pprint
 
 import requests
 
 
-def get_moment_data(set_id, play_id):
+def get_moment_data(url):
+    set_id, play_id = topshot_url_to_ids(url)
     payload = construct_payload(set_id, play_id)
     headers = {"content-type": "application/json"}
     r = requests.post(
@@ -12,12 +13,22 @@ def get_moment_data(set_id, play_id):
         headers=headers,
     )
     topshot_data = r.json()["data"]["getUserMomentListings"]["data"]
+    pprint(topshot_data)
+    min_price_moment = topshot_data["momentListings"][0]
     moment_data = {
-        "name": topshot_data["play"]["stats"]["playerName"],
+        "circulation_count": topshot_data["circulationCount"],
         "min_price": topshot_data["priceRange"]["min"],
+        "min_price_serial_number": min_price_moment["moment"]["flowSerialNumber"],
+        "player_name": topshot_data["play"]["stats"]["playerName"],
+        "set_name": topshot_data["set"]["flowName"],
+        "set_series_number": topshot_data["set"]["flowSeriesNumber"],
+        "url": url,
     }
-    pprint.pprint(moment_data)
     return moment_data
+
+
+def topshot_url_to_ids(url):
+    return url.split("/")[-1].split("+")
 
 
 def construct_payload(set_id, play_id):
