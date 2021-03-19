@@ -4,10 +4,7 @@ import requests
 
 
 def get_moment_data(url):
-    print("url", url)
     set_id, play_id = topshot_url_to_ids(url)
-    print("set_id", set_id, len(set_id))
-    print("play_id", play_id, len(play_id))
     payload = construct_payload(set_id, play_id)
     headers = {"content-type": "application/json"}
     r = requests.post(
@@ -16,9 +13,7 @@ def get_moment_data(url):
         headers=headers,
     )
     res = r.json()
-    print("res", res)
     topshot_data = res["data"]["getUserMomentListings"]["data"]
-    print("topshot_data", topshot_data)
     min_price_moment = topshot_data["momentListings"][0]
     moment_data = {
         "circulationCount": topshot_data["circulationCount"],

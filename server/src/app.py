@@ -24,7 +24,6 @@ def get_prices():
     url = json.loads(request.data.decode("utf-8"))
     response = jsonify(get_moment_data(url))
     response.headers.add("Access-Control-Allow-Origin", "*")
-    pprint(response)
     return response
 
 
