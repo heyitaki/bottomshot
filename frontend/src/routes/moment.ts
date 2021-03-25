@@ -7,14 +7,10 @@ export const getMomentData = (url: string): Promise<MomentData> => {
     headers: new Headers({
       'content-type': 'application/json',
     }),
-  }).then((response) => {
-    console.log(response);
-    return response.json();
-  });
+  }).then((response) => response.json());
 };
 
 export const transformMomentDataToMoment = (data: MomentData): Moment => {
-  console.log('player name', data.playerName);
   return {
     key: data.topshotId,
     momentName: data.playerName,

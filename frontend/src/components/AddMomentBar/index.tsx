@@ -23,7 +23,7 @@ export default function AddMomentBar({ addMoment }: AddMomentBarProps) {
           name="url"
           rules={[
             {
-              pattern: /(https:\/\/)?(www\.)?nbatopshot.com\/listings\/p2p\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}\+[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
+              pattern: /(https?:\/\/)?(www\.)?nbatopshot.com\/listings\/p2p\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}\+[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
               message: 'Please provide a valid listing URL',
             },
           ]}
@@ -36,15 +36,6 @@ export default function AddMomentBar({ addMoment }: AddMomentBarProps) {
           </Button>
         </Form.Item>
       </Form>
-      {/* <Search
-        placeholder="Moment URL"
-        allowClear
-        enterButton="Add moment"
-        onSearch={(url) => {
-          addMoment(url);
-        }}
-        ref={input}
-      /> */}
     </>
   );
 }
