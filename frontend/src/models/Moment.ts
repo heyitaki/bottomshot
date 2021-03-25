@@ -1,6 +1,6 @@
 export interface Moment {
   key: string;
-  cardName: string;
+  momentName: string;
   setName: string;
   lowestPrice: number;
   diffNextLowest: number;

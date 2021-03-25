@@ -14,12 +14,12 @@ function App() {
     setMoments((moments) => [...moments, newMoment]);
   }
 
-  function removeCardFromTable() {}
+  function removeMomentFromTable() {}
 
   return (
     <div className="page-wrapper">
       <AddMomentBar addMoment={addMomentToTable} />
-      <MomentList moments={moments} removeMoment={removeCardFromTable} />
+      <MomentList moments={moments} removeMoment={removeMomentFromTable} />
     </div>
   );
 }

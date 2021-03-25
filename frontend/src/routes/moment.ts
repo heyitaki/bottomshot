@@ -14,9 +14,10 @@ export const getMomentData = (url: string): Promise<MomentData> => {
 };
 
 export const transformMomentDataToMoment = (data: MomentData): Moment => {
+  console.log('player name', data.playerName);
   return {
     key: data.topshotId,
-    cardName: data.playerName,
+    momentName: data.playerName,
     setName: data.setName,
     lowestPrice: data.minPrice,
     diffNextLowest: 10,

@@ -10,13 +10,13 @@ type MomentListProps = {
 
 const columns: ColumnsType<Moment> = [
   {
-    key: 'cardName',
-    title: 'Card Name',
-    dataIndex: 'cardName',
+    key: 'momentName',
+    title: 'Moment',
+    dataIndex: 'momentName',
   },
   {
     key: 'setName',
-    title: 'Set Name',
+    title: 'Set',
     dataIndex: 'setName',
   },
   {

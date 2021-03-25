@@ -10,7 +10,8 @@ from topshot import get_moment_data
 app = flask.Flask(__name__)
 app.config["CORS_HEADERS"] = "Content-Type"
 app.config["DEBUG"] = True
-cors = CORS(app)
+# cors = CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 data = {}
 
 
