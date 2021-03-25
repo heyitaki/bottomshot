@@ -10,9 +10,9 @@ type MomentListProps = {
 
 const columns: ColumnsType<Moment> = [
   {
-    key: 'momentName',
-    title: 'Moment',
-    dataIndex: 'momentName',
+    key: 'playerName',
+    title: 'Player',
+    dataIndex: 'playerName',
   },
   {
     key: 'setName',
@@ -20,13 +20,18 @@ const columns: ColumnsType<Moment> = [
     dataIndex: 'setName',
   },
   {
+    key: 'momentName',
+    title: 'Moment',
+    dataIndex: 'momentName',
+  },
+  {
     key: 'lowestPrice',
-    title: 'Lowest Price',
+    title: 'Min price',
     dataIndex: 'lowestPrice',
   },
   {
     key: 'diffNextLowest',
-    title: 'Difference between next lowest price',
+    title: '+/- Avg min',
     dataIndex: 'diffNextLowest',
   },
 ];

@@ -1,6 +1,7 @@
 import { Button, Form, Input } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
+import { urlRegex } from '../../utils/moment';
 
 type AddMomentBarProps = {
   addMoment: Function;
@@ -23,7 +24,7 @@ export default function AddMomentBar({ addMoment }: AddMomentBarProps) {
           name="url"
           rules={[
             {
-              pattern: /(https?:\/\/)?(www\.)?nbatopshot.com\/listings\/p2p\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}\+[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
+              pattern: urlRegex,
               message: 'Please provide a valid listing URL',
             },
           ]}

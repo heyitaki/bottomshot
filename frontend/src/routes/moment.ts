@@ -13,10 +13,12 @@ export const getMomentData = (url: string): Promise<MomentData> => {
 export const transformMomentDataToMoment = (data: MomentData): Moment => {
   return {
     key: data.topshotId,
-    momentName: data.playerName,
-    setName: data.setName,
-    lowestPrice: data.minPrice,
+    playerName: data.playerName,
+    momentName: `${data.playType}, ${new Date(data.playDate).toLocaleDateString('en-US')}`,
+    setName: `${data.setName} (Series ${data.setSeriesNumber})`,
+    lowestPrice: Math.round(data.minPrice),
     diffNextLowest: 10,
+    url: data.url,
   };
 };
 
@@ -24,7 +26,9 @@ export interface MomentData {
   circulationCount: number;
   minPrice: number;
   minPriceSerialNumber: number;
+  playDate: string;
   playerName: string;
+  playType: string;
   setName: string;
   setSeriesNumber: number;
   topshotId: string;
