@@ -1,5 +1,6 @@
 import express from 'express';
 import { GetMomentDataReq } from '../../frontend/src/routes/moment';
+import { getCheapestListing } from './routes/getCheapestListing';
 
 const app = express();
 app.use(express.json());
@@ -9,9 +10,9 @@ app.get('/', (req, res) => {
   res.send({});
 });
 
-app.post('/getPrices', (req, res) => {
+app.post('/getCheapestListing', async (req, res) => {
   const { url } = req.body as GetMomentDataReq;
-  res.send({});
+  res.send(await getCheapestListing(url));
 });
 
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 import { parseIdsFromUrl } from '../../../frontend/src/utils/moment';
 import { getUserMomentListingsDedicated } from './topshot/getUserMomentListingsDedicated';
 
-export const getPrices = async (url: string) => {
+export const getCheapestListing = async (url: string) => {
   const { setId, playId } = parseIdsFromUrl(url);
   const listings = await getUserMomentListingsDedicated(setId, playId);
 
