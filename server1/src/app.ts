@@ -1,4 +1,5 @@
 import express from 'express';
+import { GetMomentDataReq } from '../../frontend/src/routes/moment';
 
 const app = express();
 app.use(express.json());
@@ -9,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/getPrices', (req, res) => {
-  console.log(req.body);
+  const { url } = req.body as GetMomentDataReq;
   res.send({});
 });
 

@@ -4,7 +4,7 @@ import AddMomentBar from '../components/AddMomentBar';
 import MomentList from '../components/MomentList';
 import { Moment } from '../models/Moment';
 import { getMomentData, transformMomentDataToMoment } from '../routes/moment';
-import { getPlayIdFromUrl } from '../utils/moment';
+import { parseIdsFromUrl } from '../utils/moment';
 import './index.css';
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
 
   async function addMomentToTable(url: string) {
     // Don't add moment if it already exists in table
-    const playId = getPlayIdFromUrl(url);
-    if (moments.map((moment) => getPlayIdFromUrl(moment.url)).indexOf(playId) !== -1) {
+    const playId = parseIdsFromUrl(url).playId;
+    if (moments.map((moment) => parseIdsFromUrl(moment.url).playId).indexOf(playId) !== -1) {
       return;
     }
 

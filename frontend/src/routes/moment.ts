@@ -1,9 +1,9 @@
 import { Moment } from '../models/Moment';
 
 export const getMomentData = (url: string): Promise<MomentData> => {
-  return fetch('http://localhost:5000/getPrices', {
+  return fetch('http://localhost:3000/getPrices', {
     method: 'POST',
-    body: JSON.stringify(url),
+    body: JSON.stringify({ url }),
     headers: new Headers({
       'content-type': 'application/json',
     }),
@@ -21,6 +21,10 @@ export const transformMomentDataToMoment = (data: MomentData): Moment => {
     url: data.url,
   };
 };
+
+export interface GetMomentDataReq {
+  url: string;
+}
 
 export interface MomentData {
   circulationCount: number;
